@@ -1,0 +1,80 @@
+<!DOCTYPE html>
+<html>
+<head>
+    <title>AnimeGenerator</title>
+    <style>
+        * {
+            font-size:30px;
+        }
+    </style>
+</head>
+<body>
+    <!-- <input id="image-selector" type="file"> -->
+    <input id="number-input" type="text"/>
+    <button id="generate-button">Generate</button>
+    <img id="selected-image" src=""/>
+    <script src="https://code.jquery.com/jquery-3.3.1.min.js"></script>
+    
+    <script>
+        // let base64Image;
+        // $("#image-selector").change(function() {
+        //     let reader = new FileReader();
+        //     reader.onload = function(e) {
+        //         let dataURL = reader.result;
+        //         $('#selected-image').attr("src", dataURL);
+        //         base64Image = dataURL.replace("data:image/png;base64,","");
+        //         console.log(base64Image);
+        //     }
+        //     reader.readAsDataURL($("#image-selector")[0].files[0]);
+        // });
+
+        // $("#name-button").click(function(event){
+        //     let message = {
+        //         number: $("#number-input").val()
+        //     }
+        //     $.post("http://192.168.31.69:5000/hello", JSON.stringify(message), function(response) {
+        //         $("#greeting").text(response.greeting);
+        //         console.log(response);
+        //     });
+            
+        // });
+
+
+        $("#generate-button").click(function(event)
+        {
+            // let message = {
+            //     image: base64Image
+            // }
+            // var image = new Image();
+            // console.log(message);
+
+            // $.post("http://localhost:5000/predict", JSON.stringify(message), function(response)
+            // {
+            //     // image.src = 'data:image/png;base64,' + base64Image;
+            //     $('#result').attr("src", "data:image/png;base64," + base64Image);
+            //     console.log(response.image);
+            // });
+            let message = {
+                    number: $("#number-input").val()
+                }
+            
+
+            $.post("http://93.175.1.29:15000/generate",JSON.stringify(message), function(response)
+            {
+                {% for n in arr %}
+                $('#result{{n}}').attr("src", "data:image/png;base64," + response.image{{n}});
+                {% endfor %}
+                // $("#greeting").text(response.greeting);
+                console.log("generated");
+            });
+        });
+
+    </script>
+    <p>
+    {% for n in arr %}
+    <img id="result{{n}}" src="" alt ="">
+    {% endfor %}
+    </p>
+
+</body>
+</html>
