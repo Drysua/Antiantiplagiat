@@ -1,0 +1,64 @@
+{% extends "base.html" %}
+
+{% block content %}
+
+<script type="text/javascript">
+$(document).ready(function(){
+$( ".slider" ).slider({
+			    animate: true,
+                range: "min",
+                value: 0,
+                min: 1,
+                max: 100,
+				step: 1,
+
+                slide: function( event, ui ) {
+                    $( "#slider-result" ).html(ui.value);
+                },
+
+                change: function(event, ui) {
+                $('#znch').attr('value', ui.value);
+                }
+
+				});
+      });
+</script>
+<body>
+<div class="slider">
+<a class="ui-slider-handle" href="#">
+<div id="slider-result">0</div>
+</a>
+
+<input id="znch" name="znch" type="hidden" />
+</div>
+<br>
+<div>How many features do you want to add?</div>
+<button id="generate-button">Add some features</button>
+
+</form>
+<script>
+    $("#generate-button").click(function(event)
+    {
+        let message = {
+                number: $("#znch").val()
+            }
+        
+            // http://93.175.1.29:5000/generate
+        $.post("http://192.168.31.69:5000/gnoise",JSON.stringify(message), function(response)
+        {
+            {% for n in arr %}
+            $('#result{{n}}').attr("src", "data:image/png;base64," + response.image{{n}});
+            {% endfor %}
+            // $("#greeting").text(response.greeting);
+            console.log("generated");
+        });
+    });
+
+</script>
+<p>
+    {% for n in arr %}
+    <img id="result{{n}}" src="" alt ="" height="128" width="128">
+    {% endfor %}
+</p>
+
+{% endblock %}

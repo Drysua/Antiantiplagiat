@@ -1,14 +1,6 @@
-<!DOCTYPE html>
-<html>
-<head>
-    <title>AnimeGenerator</title>
-    <style>
-        * {
-            font-size:30px;
-        }
-    </style>
-</head>
-<body>
+{% extends "base.html" %}
+
+{% block content %}
     <!-- <input id="image-selector" type="file"> -->
     <input id="number-input" type="text"/>
     <button id="generate-button">Generate</button>
@@ -58,8 +50,8 @@
                     number: $("#number-input").val()
                 }
             
-
-            $.post("http://93.175.1.29:15000/generate",JSON.stringify(message), function(response)
+                // http://93.175.1.29:5000/generate
+            $.post("http://192.168.31.69:5000/generate",JSON.stringify(message), function(response)
             {
                 {% for n in arr %}
                 $('#result{{n}}').attr("src", "data:image/png;base64," + response.image{{n}});
@@ -72,9 +64,8 @@
     </script>
     <p>
     {% for n in arr %}
-    <img id="result{{n}}" src="" alt ="">
+    <img id="result{{n}}" src="" alt ="" height="128" width="128">
     {% endfor %}
     </p>
 
-</body>
-</html>
+    {% endblock %}

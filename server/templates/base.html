@@ -1,0 +1,97 @@
+<!doctype html>
+<html lang="ru">
+<head>
+<meta charset="utf-8">
+<title>AnimeGAN</title>
+ 
+<script src="https://ajax.googleapis.com/ajax/libs/jquery/3.1.0/jquery.min.js"></script>
+<script src="http://code.jquery.com/ui/1.10.3/jquery-ui.js"></script>
+
+<head> 
+    <title>Welcome to Microblog</title>
+</head>
+
+<style>
+html {
+    min-height: 100%
+    }
+body {
+    min-height: 100%;
+	margin:0;
+	padding:0;
+	font: 15px Tahoma;
+	color:#555;
+    }
+#top{
+	width:100%;
+	background: #222;
+	text-align:center;
+	height:35px;
+	line-height:35px;
+	}
+#top a{color:#00FF00;text-decoration:none;}
+.logo{
+	width:200px;
+	font: 22px/125% Tahoma;
+	float:left;
+	line-height:35px;
+	}
+.logo span{font: 12px/125% Tahoma;}
+
+.slider {
+width:230px;
+height:11px;
+background:#eee;
+position:relative;
+margin:0 auto;
+padding:0 10px;
+}
+
+.ui-slider-handle {
+width:24px;
+height:24px;
+position:absolute;
+top:-7px;
+margin-left:-12px;
+z-index:200;
+background:#fc0;
+-webkit-border-radius: 50px;
+-moz-border-radius: 50px;
+border-radius: 50px;
+}
+
+.ui-widget-header {
+background:#f00;
+height:8px;
+left:1px;
+top:1px;
+position:absolute;
+}
+#slider-result {
+text-align:center;
+position:absolute;
+top:27px;
+left:-8px;
+background:#eee;
+color:#000;
+font: 16px sans-serif;
+padding:5px 0;
+width:40px;
+}
+
+.f_orm{width:300px;margin:50px auto 0;}
+</style>
+
+
+</head>
+<body>
+
+    <div id="top">
+    <div class="logo"><a>Made In Abbys</a></div>
+    <a href="{{ url_for('index') }}">Home</a>
+    <a href="{{ url_for('den') }}">Make your anime</a></div>
+    
+    {% block content %}{% endblock %}
+
+</body>
+</html>
