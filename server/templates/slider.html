@@ -42,9 +42,9 @@ $( ".slider" ).slider({
         let message = {
                 number: $("#znch").val()
             }
-        
+
             // http://93.175.1.29:5000/generate
-        $.post("http://192.168.31.69:5000/gnoise",JSON.stringify(message), function(response)
+        $.post("/gnoise",JSON.stringify(message), function(response)
         {
             {% for n in arr %}
             $('#result{{n}}').attr("src", "data:image/png;base64," + response.image{{n}});
